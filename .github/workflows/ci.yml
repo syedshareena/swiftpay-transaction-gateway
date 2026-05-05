@@ -20,7 +20,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven (skip tests)
-        run: mvn clean package -DskipTests
+        run: mvn -B clean package -DskipTests
 
       - name: Build Docker Image
         run: docker build -t swiftpay-gateway .
