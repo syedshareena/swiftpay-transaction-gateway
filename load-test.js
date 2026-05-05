@@ -20,7 +20,7 @@ export default function () {
   });
 
   const response = http.post(
-    'http:git init//localhost:8080/v1/payments',
+    'http://localhost:8080/v1/payments',
     payload,
     { headers: { 'Content-Type': 'application/json' } }
   );
