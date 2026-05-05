@@ -190,6 +190,47 @@ k6 run load-test.js
 Database Verification
 docker exec -it swiftpay-postgres psql -U postgres -d swiftpay -c "SELECT id, status, amount FROM transactions;"
 
+## Load Testing
+
+Load testing was performed using **k6** to simulate high-throughput payment requests.
+
+- Target Throughput: **250 transactions per second (TPS)**
+- Total Transactions: **~1,000,000**
+- Endpoint Tested: `POST /v1/payments`
+- Test Tool: k6
+
+### Command Used
+
+k6 run load-test.js
+
+### Purpose
+
+- Validate system performance under heavy load
+- Ensure idempotency handling via Redis
+- Verify Kafka event publishing at scale
+
+ ## PCAP Capture
+
+A network packet capture (PCAP) was recorded during the load test to analyze real-time system behavior.
+
+### Tool Used
+- Wireshark
+
+### Capture Details
+- Interface: Loopback (localhost)
+- Duration: Entire load test execution
+- File: `load_test_capture.pcapng`
+
+### Observed Traffic
+- HTTP requests from client to Transaction Gateway
+- Kafka communication (port 9092)
+- Event publishing to `payment-initiated` topic
+- Consumer group activity (`ledger-group`)
+
+### Notes
+- The capture includes inter-service communication between Transaction Gateway and Ledger Service via Kafka.
+- Some packets may show "Request missing" due to high throughput and packet sampling under load. 
+
 Author
 Shareena Syed  
 Java Full Stack Developer  
