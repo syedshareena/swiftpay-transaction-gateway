@@ -21,7 +21,7 @@ The **Transaction Gateway** is the entry point of the SwiftPay platform. It hand
 
 ## Architecture
 
-```
+```text
                     Client
                        │
              POST /v1/payments
@@ -42,6 +42,7 @@ The **Transaction Gateway** is the entry point of the SwiftPay platform. It hand
           │
       Ledger Service
 ```
+
 
 ## Payment Flow
 
